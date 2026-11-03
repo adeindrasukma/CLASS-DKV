@@ -1,0 +1,48 @@
+{
+  "entities": {
+    "Student": {
+      "title": "Student",
+      "description": "Biodata record for class XII DKV students and their siblings",
+      "type": "object",
+      "properties": {
+        "no": { "type": "number", "description": "Roll number or sequence in attendance list" },
+        "nama": { "type": "string", "maxLength": 150, "description": "Full name of the student" },
+        "tempatLahir": { "type": "string", "maxLength": 100, "description": "Place of birth" },
+        "tanggalLahir": { "type": "string", "maxLength": 20, "description": "Date of birth (YYYY-MM-DD)" },
+        "alamat": { "type": "string", "maxLength": 300, "description": "Residential address" },
+        "noHp": { "type": "string", "maxLength": 30, "description": "Student phone / WhatsApp number" },
+        "namaWali": { "type": "string", "maxLength": 150, "description": "Parent or guardian name" },
+        "noHpWali": { "type": "string", "maxLength": 30, "description": "Parent or guardian phone / WhatsApp number" },
+        "jumlahSaudara": { "type": "number", "description": "Number of siblings" },
+        "saudara": { "type": "array", "description": "List of siblings with education status and institution" },
+        "isCompleted": { "type": "boolean", "description": "Flag indicating if the biodata has been filled" },
+        "updatedAt": { "type": "string", "description": "Last update timestamp" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["nama"]
+    },
+    "AdminConfig": {
+      "title": "AdminConfig",
+      "description": "Configuration and access credentials for administrator",
+      "type": "object",
+      "properties": {
+        "adminPasswordHash": { "type": "string", "maxLength": 200, "description": "Admin access security key hash" },
+        "schoolName": { "type": "string", "maxLength": 150, "description": "School name" },
+        "className": { "type": "string", "maxLength": 50, "description": "Class name, e.g. XII DKV" },
+        "academicYear": { "type": "string", "maxLength": 20, "description": "Academic year, e.g. 2026/2027" },
+        "updatedAt": { "type": "string", "description": "Last update timestamp" }
+      },
+      "required": ["adminPasswordHash"]
+    }
+  },
+  "firestore": {
+    "/students/{studentId}": {
+      "schema": { "$ref": "Student" },
+      "description": "Student biodata documents for class XII DKV"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "AdminConfig" },
+      "description": "Application settings and admin credentials"
+    }
+  }
+}

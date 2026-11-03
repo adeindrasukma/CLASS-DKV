@@ -1,0 +1,6 @@
+{
+  "name": "Sistem Biodata Siswa XII DKV",
+  "description": "Sistem informasi pendataan biodata siswa kelas XII DKV tahun ajaran 2026/2027 terintegrasi Firebase dengan ekspor Excel/PDF, fitur reset, dan manajemen admin.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

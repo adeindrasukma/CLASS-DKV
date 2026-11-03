@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Health check test doc
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+
+    // Students collection - allows reading list for students/parents/admin, and get/create/update/delete
+    match /students/{studentId} {
+      allow get: if isValidId(studentId);
+      allow list: if true;
+      allow create, update, delete: if isValidId(studentId);
+    }
+
+    // Admin settings and configuration
+    match /settings/{settingId} {
+      allow get: if isValidId(settingId);
+      allow list: if true;
+      allow create, update, delete: if isValidId(settingId);
+    }
+  }
+}
